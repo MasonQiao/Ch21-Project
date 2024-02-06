@@ -4,20 +4,23 @@
 
 (define-struct player_object (xpos ypos xv yv))
 
-(define (dh1 m) (place-image (circle 5 "solid" "red") (player_object-xpos m) (player_object-ypos m) (rectangle 500 500 "solid" "transparent")))
+(define (dh1 m) (crop-top (place-image (circle 50 "solid" "red") (+ (player_object-xpos m) 140) (- 700 (player_object-ypos m)) (rectangle 500 1000 "solid" "transparent")) 150))
 
 (define (cube-tick m)
-  (cond [(floor? m) (make-player_object (+ (player_object-xpos xv)) (player_obejct-ypos m) (player_object-xv m) 0)]
+  (cond [(floor? m) (make-player_object  (player_object-xpos m) 0 (player_object-xv m) 0)]
         [else (make-player_object
-               (+ (player_object-xpos m) (player_object-xv m))
+               (player_object-xpos m)
                (+ (player_object-ypos m) (player_object-yv m))
-               xv
-               (if (> (player_object_yv m) 2.6) (+ (player_objecct-yv m) -0.876) (player_object-yv m)))]))
+               (player_object-xv m)
+                (if (> (player_object-yv m) -260) (+ (player_object-yv m) -87.6) (player_object-yv m)))]))
 
 (define (cube-mouse m x y event)
-  (if (and (mouse=? event "button-down") (floor? m)) (make-player_object (player_object-xpos m) (player_object-ypos m) (player_object-xv m) 1.94) m))
+  (if (and (mouse=? event "button-down") (floor? m)) (make-player_object (player_object-xpos m) (+ (player_object-ypos m) 0.01) (player_object-xv m) 194) m))
 
-(define (floor? m)  (<= (player_object-ypos) 5))
+(define (floor? m)  (<= (player_object-ypos m) 0))
 
 
-(big-bang (make-player_object 0 0 5 0) (on-draw dh1) (on-tick cube-tick) (on-mouse cube-mouse))
+(big-bang (make-player_object 0 400 5 0)
+  (on-draw dh1)
+  (on-tick cube-tick 0.067)
+  (on-mouse cube-mouse))
