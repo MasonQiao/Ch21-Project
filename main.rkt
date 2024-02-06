@@ -31,7 +31,7 @@
 
 (define (floor? m)  (<= (player_object-ypos m) (player_object-f m)))
 
-(define spike (scale 0.83 ))
+(define spike (scale 0.83 (bitmap/url "https://raw.githubusercontent.com/MasonQiao/Ch21-Project/main/untitled.png")))
 (define (death? m)
   (cond [(or (equal? (get-pixel-color (floor (+ 50 (player_object-xpos m))) (floor (+ 50 (player_object-ypos m))) spike) (make-color 255 136 136 255))
              (equal? (get-pixel-color (floor (+ 50 (player_object-xpos m))) (floor (+ -50 (player_object-ypos m))) spike) (make-color 255 136 136 255))
