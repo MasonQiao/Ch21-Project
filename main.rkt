@@ -31,14 +31,14 @@
 
 (define (floor? m)  (>= (player_object-ypos m) (player_object-f m)))
 
-(define spike (scale 0.83 (bitmap/url "https://raw.githubusercontent.com/MasonQiao/Ch21-Project/main/untitled.png")))
+(define spike (scale 0.36 (bitmap/url "https://raw.githubusercontent.com/MasonQiao/Ch21-Project/main/Drawing-259.sketchpad.png?")))
 (define spikes (beside spike spike spike spike spike))
 
 (define (death? m)
-  (cond [(or (equal? (get-pixel-color (floor (+ 50 (player_object-xpos m))) (floor (+ 50 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
-             (equal? (get-pixel-color (floor (+ 50 (player_object-xpos m))) (floor (+ -50 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
-             (equal? (get-pixel-color (floor (+ -50 (player_object-xpos m))) (floor (+ -50 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
-             (equal? (get-pixel-color (floor (+ -50 (player_object-xpos m))) (floor (+ 50 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
+  (cond [(or (equal? (get-pixel-color (floor (+ 50 (player_object-xpos m))) (floor (player_object-ypos m)) spikes) (make-color 255 136 136 255))
+             (equal? (get-pixel-color (floor (+ -50 (player_object-xpos m))) (floor (player_object-ypos m)) spikes) (make-color 255 136 136 255))
+             (equal? (get-pixel-color (floor (player_object-xpos m)) (floor (+ -50 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
+             (equal? (get-pixel-color (floor (player_object-xpos m)) (floor (+ 50 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
              (equal? (get-pixel-color (floor (+ 30 (player_object-xpos m))) (floor (+ 30 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
              (equal? (get-pixel-color (floor (+ 30 (player_object-xpos m))) (floor (+ -30 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
              (equal? (get-pixel-color (floor (+ -30 (player_object-xpos m))) (floor (+ -30 (player_object-ypos m))) spikes) (make-color 255 136 136 255))
