@@ -21,10 +21,10 @@ When the player's hitbox, which are 8 evenly spaced points on the edge of a circ
 A helper function is used to check the color of a given location, and returns whether it should kill the player.
 
 The physics of the player jump is the exact same physics used in real geometry dash, with the velocity changing every tick.
-When the player presses the space to jump, the y velocity is changed to 
-When the player is in the air jumping, to -194. It is negative because we place the image at positive coordinates, and going up means decreasing y.
+When the player jumps, the y velocity of the player is set to -194. It is negative because we place the image at positive coordinates, and going up means decreasing y.
 On every tick, we subtract 87.6 from the velocity to slow it down, creating a realistic jumping effect in a parabola shape.
 Also, in order to limit the player from gaining too much momentum when falling off a high place, when y velocity > 260, we stop changing the velocity.
+This is like a terminal velocity in real life.
 
 The player moves every tick based on the velocity of the x and y, as we add the player's x to the x velocity, and y to y velocity.
 The tick handler also is where the y velocity of the jump height is changed, with the help of the jump-physics helper function, using the physics explained.
